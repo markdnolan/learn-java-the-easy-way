@@ -1,0 +1,6 @@
+INDEX VERSION 1.134+/Users/marknolan/Library/CloudStorage/OneDrive-Personal/Coding/GitHub/learn-java-the-easy-way/.metadata/.plugins/org.eclipse.jdt.core
+500478837.index
+2657394288.index
+693392180.index
+1865797976.index
+3453539238.index
