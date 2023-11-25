@@ -6,4 +6,6 @@
 		<item key="width" value="561"/>
 		<item key="height" value="317"/>
 	</section>
+	<section name="org.eclipse.wb.internal.core.editor.actions.assistant.LayoutAssistantWindow">
+	</section>
 </section>

@@ -11,8 +11,10 @@ import java.awt.event.ActionEvent;
 public class GuessingGame extends JFrame {
 	private JTextField textGuess;
 	private JLabel labelOutput;
+	private JButton buttonPlayAgain;
 	private int theNumber;
 	private int numberOfTries;
+	private String openingMessage = "Enter a number in the box above then click Guess.";
 	
 	public void checkGuess() {
 		String guessText = textGuess.getText();
@@ -28,14 +30,14 @@ public class GuessingGame extends JFrame {
 				message = guess + " is too high, try again." + attempts;
 			else {
 				message = guess + " is correct, well done! You took " + numberOfTries + " tries. Let's play again!";
-				newGame();
+				buttonPlayAgain.setVisible( true );
 			}
 		} catch (Exception badText) {
 			message = "Enter a whole number bewteen 1 and 100. You still have " + (8 - numberOfTries) + " tries left.";
 		} finally {
 			if (numberOfTries > 7) {
 				message = "Sorry you ran out of tries. Try again";
-				newGame();
+				buttonPlayAgain.setVisible( true );
 			}
 			labelOutput.setText(message);
 			textGuess.requestFocus();
@@ -47,6 +49,9 @@ public class GuessingGame extends JFrame {
 	public void newGame() {
 		theNumber = (int)(Math.random() * 100 + 1 );
 		numberOfTries = 0;
+		buttonPlayAgain.setVisible( false );
+		labelOutput.setText( openingMessage );
+		
 	}
 	
 	public GuessingGame() {
@@ -86,11 +91,22 @@ public class GuessingGame extends JFrame {
 		buttonGuess.setBounds(166, 151, 117, 29);
 		getContentPane().add(buttonGuess);
 		
-		labelOutput = new JLabel("Enter a number in the box above then click Guess.");
+		buttonPlayAgain = new JButton("Play Again");
+		buttonPlayAgain.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent playAgain) {
+				newGame();
+			}
+		});
+		buttonPlayAgain.setFont(new Font(".AppleSystemUIFont", Font.PLAIN, 13));
+		buttonPlayAgain.setBounds(166, 177, 117, 29);
+		getContentPane().add(buttonPlayAgain);
+		
+		labelOutput = new JLabel(  openingMessage );
 		labelOutput.setFont(new Font(".AppleSystemUIFont", Font.PLAIN, 13));
 		labelOutput.setHorizontalAlignment(SwingConstants.CENTER);
 		labelOutput.setBounds(0, 218, 450, 16);
 		getContentPane().add(labelOutput);
+		
 	}
 
 	public static void main(String[] args) {
@@ -99,5 +115,4 @@ public class GuessingGame extends JFrame {
 		theGame.setSize(new Dimension( 450,300 ) );
 		theGame.setVisible( true );
 	}
-	
 }
